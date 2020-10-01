@@ -107,7 +107,7 @@ void sha1_md(unsigned char message[], int size, unsigned int hash[5]) {
     msgTBH[R]=0x80;
     for (i=R+1; i<64; i++) {
       msgTBH[i]=0x00;
-    } 
+    }
     sha1_process(hash, msgTBH);
     sha_msg_pad0(bitlen,paddedMessage);
   } else {
@@ -120,7 +120,7 @@ void sha1_md(unsigned char message[], int size, unsigned int hash[5]) {
 void sha1_process(unsigned int hash[], unsigned char msg[]) {
   const unsigned int K[4] = {0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6};
   unsigned int W[80];
-  unsigned int A, B, C, D, E, T;
+  unsigned register int A, B, C, D, E, T;
   register int i;
   for(i = 0; i < 16; i++) {
     W[i] = (((unsigned) msg[i * 4]) << 24) +
@@ -235,7 +235,7 @@ void sha256_process(unsigned int hash[], unsigned char msg[]) {
     0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2};
   unsigned int W[64];
   register int i;
-  unsigned int A, B, C, D, E, F, G, H, T1, T2;
+  unsigned register int A, B, C, D, E, F, G, H, T1, T2;
   for(i = 0; i < 16; i++) {
     W[i] = (((unsigned) msg[i * 4]) << 24) |
       (((unsigned) msg[i * 4 + 1]) << 16) |
@@ -371,7 +371,7 @@ void sha512_process(unsigned long hash[], unsigned char msg[]) {
     0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817};
   register int i;
   unsigned long W[80];
-  unsigned long A, B, C, D, E, F, G, H, T1, T2;
+  unsigned register long A, B, C, D, E, F, G, H, T1, T2;
   for(i = 0; i < 16; i++) {
     W[i] = (((unsigned long) msg[i * 8])<< 56) |
       (((unsigned long) msg[i * 8 + 1]) << 48) |

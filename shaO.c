@@ -38,8 +38,8 @@
 #define Sigma5120(x) (ROTR512(x,28) ^ ROTR512(x,34) ^ ROTR512(x,39))
 #define Sigma5121(x) (ROTR512(x,14) ^ ROTR512(x,18) ^ ROTR512(x,41))
 
-void sha1_process(unsigned int[], unsigned char[]);
-void sha256_process(unsigned int[], unsigned char[]);
+void sha1_process(u_int32_t[], u_char[]);
+void sha256_process(u_int32_t[], u_char[]);
 void sha512_process(unsigned long [], unsigned char []);
 int testSHA(int shatype, int numT);
 
@@ -52,9 +52,9 @@ int main (int argc, char *argv[]) {
 }
 
 
-void sha_msg_pad(unsigned char message[], int size, unsigned int bitlen,
-		 unsigned char paddedmsg[]) {
-  int i;
+void sha_msg_pad(u_char message[], int32_t size, u_int32_t bitlen,
+		 u_char paddedmsg[]) {
+  register int32_t i;
   for (i=0; i<size; i++) {
     paddedmsg[i]=message[i];
   }
@@ -69,8 +69,8 @@ void sha_msg_pad(unsigned char message[], int size, unsigned int bitlen,
   return;
 }
 
-void sha_msg_pad0(unsigned int bitlen, unsigned char paddedmsg[]) {
-  register int i;
+void sha_msg_pad0(u_int32_t bitlen, u_char paddedmsg[]) {
+  register int32_t i;
   for (i=0; i<64; i++) {
     paddedmsg[i]=0x00;
   }
@@ -81,21 +81,21 @@ void sha_msg_pad0(unsigned int bitlen, unsigned char paddedmsg[]) {
   return;
 }
 
-void sha1_md(unsigned char message[], int size, unsigned int hash[5]) {
-  unsigned int bitlen = 8*size;
+void sha1_md(u_char message[], int32_t size, u_int32_t hash[5]) {
+  u_int32_t bitlen = 8*size;
   hash[0] = 0x67452301;
   hash[1] = 0xEFCDAB89;
   hash[2] = 0x98BADCFE;
   hash[3] = 0x10325476;
   hash[4] = 0xC3D2E1F0;
-  register int i;
+  register int32_t i;
 
-  unsigned char msgTBH[64]; /* 64 BYTE msg to be hashed */
-  unsigned char paddedMessage[64]; /* last msg block to be hashed*/
+  u_char msgTBH[64]; /* 64 BYTE msg to be hashed */
+  u_char paddedMessage[64]; /* last msg block to be hashed*/
 
-  int Q= size/64;
-  int R= size%64;
-  unsigned char msg[R];
+  register int32_t Q= size/64;
+  register int32_t R= size%64;
+  u_char msg[R];
   memcpy(msg, &message[64*Q], R * sizeof(unsigned char));
   
   for (i=0; i<Q; i++) {
@@ -114,14 +114,13 @@ void sha1_md(unsigned char message[], int size, unsigned int hash[5]) {
     sha_msg_pad(msg, R, bitlen, paddedMessage);
   }
   sha1_process(hash, paddedMessage);
-  return;
 }
 
-void sha1_process(unsigned int hash[], unsigned char msg[]) {
-  const unsigned int K[4] = {0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6};
-  unsigned int W[80];
-  unsigned register int A, B, C, D, E, T;
-  register int i;
+void sha1_process(u_int32_t hash[], u_char msg[]) {
+  const u_int32_t K[4] = {0x5A827999, 0x6ED9EBA1, 0x8F1BBCDC, 0xCA62C1D6};
+  u_int32_t W[80];
+  register u_int32_t A, B, C, D, E, T;
+  register int32_t i;
   for(i = 0; i < 16; i++) {
     W[i] = (((unsigned) msg[i * 4]) << 24) +
       (((unsigned) msg[i * 4 + 1]) << 16) +
@@ -178,11 +177,10 @@ void sha1_process(unsigned int hash[], unsigned char msg[]) {
   hash[2] +=  C;
   hash[3] +=  D;
   hash[4] +=  E;
-  return;
 }
 
-void sha256_md(unsigned char message[], int size, unsigned int hash[8]) {
-  unsigned int bitlen = 8*size;
+void sha256_md(u_char message[], int32_t size, u_int32_t hash[8]) {
+  u_int32_t bitlen = 8*size;
   hash[0] = 0x6A09E667;  
   hash[1] = 0xBB67AE85;
   hash[2] = 0x3C6EF372;  
@@ -192,12 +190,12 @@ void sha256_md(unsigned char message[], int size, unsigned int hash[8]) {
   hash[6] = 0x1F83D9AB;
   hash[7] = 0x5BE0CD19;
   
-  unsigned char msgTBH[64]; /* 64 BYTE msg to be hashed */
-  unsigned char paddedMessage[64]; /* last msg block to be hashed*/
-  register int i;
-  int Q= size/64;
-  int R= size%64;
-  unsigned char msg[R];
+  u_char msgTBH[64]; /* 64 BYTE msg to be hashed */
+  u_char paddedMessage[64]; /* last msg block to be hashed*/
+  register int32_t i;
+  register int32_t Q= size/64;
+  register int32_t R= size%64;
+  u_char msg[R];
   memcpy(msg, &message[64*Q], R * sizeof(unsigned char));
   
   for (i=0; i<Q; i++) {
@@ -220,8 +218,8 @@ void sha256_md(unsigned char message[], int size, unsigned int hash[8]) {
   return;
 }
 
-void sha256_process(unsigned int hash[], unsigned char msg[]) {
-  const unsigned int K[64] = {
+void sha256_process(u_int32_t hash[], u_char msg[]) {
+  const u_int32_t K[64] = {
     0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,
     0x923f82a4,0xab1c5ed5,0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,
     0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,0xe49b69c1,0xefbe4786,
@@ -233,9 +231,9 @@ void sha256_process(unsigned int hash[], unsigned char msg[]) {
     0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,
     0x5b9cca4f,0x682e6ff3,0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,
     0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2};
-  unsigned int W[64];
-  register int i;
-  unsigned register int A, B, C, D, E, F, G, H, T1, T2;
+  u_int32_t W[64];
+  register int32_t i;
+  register u_int32_t A, B, C, D, E, F, G, H, T1, T2;
   for(i = 0; i < 16; i++) {
     W[i] = (((unsigned) msg[i * 4]) << 24) |
       (((unsigned) msg[i * 4 + 1]) << 16) |
@@ -322,8 +320,8 @@ void sha512_md(unsigned char message[], int size, unsigned long hash[8]) {
   unsigned char msgTBH[128]; /* 128 BYTE msg to be hashed */
   unsigned char paddedMessage[128]; /* last msg block to be hashed*/
   
-  int Q= size/128;
-  int R= size%128;
+  register int Q= size/128;
+  register int R= size%128;
   unsigned char msg[R];
   memcpy(msg, &message[128*Q], R * sizeof(unsigned char));
   register int i;
@@ -371,7 +369,7 @@ void sha512_process(unsigned long hash[], unsigned char msg[]) {
     0x4cc5d4becb3e42b6, 0x597f299cfc657e2a, 0x5fcb6fab3ad6faec, 0x6c44198c4a475817};
   register int i;
   unsigned long W[80];
-  unsigned register long A, B, C, D, E, F, G, H, T1, T2;
+  register unsigned long A, B, C, D, E, F, G, H, T1, T2;
   for(i = 0; i < 16; i++) {
     W[i] = (((unsigned long) msg[i * 8])<< 56) |
       (((unsigned long) msg[i * 8 + 1]) << 48) |

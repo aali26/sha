@@ -1,0 +1,205 @@
+Command Line: Unrecognized option: -errchk=longptr64,signext
+  A flag is not recognized or used in an incorrect way (Use -badflag to inhibit
+  warning)
+shaO.c: (in function main)
+shaO.c:49:3: Return value (type int) ignored: testSHA(1, numofT)
+  Result returned by function call is not used. If this is intended, can cast
+  result to (void) to eliminate message. (Use -retvalint to inhibit warning)
+shaO.c:50:3: Return value (type int) ignored: testSHA(2, numofT)
+shaO.c:51:3: Return value (type int) ignored: testSHA(3, numofT)
+shaO.c:47:15: Parameter argc not used
+  A function parameter is not used in the body of the function. If the argument
+  is needed for type compatibility or future plans, use /*@unused@*/ in the
+  argument declaration. (Use -paramuse to inhibit warning)
+shaO.c:47:27: Parameter argv not used
+shaO.c: (in function sha_msg_pad)
+shaO.c:62:3: Assignment of int to unsigned char: paddedmsg[size] = 0x80
+  To make char and int types equivalent, use +charint.
+shaO.c:64:5: Assignment of int to unsigned char: paddedmsg[i] = 0x00
+  Types are incompatible. (Use -type to inhibit warning)
+shaO.c:66:3: Assignment of uint32_t to unsigned char: paddedmsg[63] = bitlen
+shaO.c:67:3: Assignment of uint32_t to unsigned char:
+                paddedmsg[62] = bitlen >> 8
+shaO.c:68:3: Assignment of uint32_t to unsigned char:
+                paddedmsg[61] = bitlen >> 16
+shaO.c:69:3: Assignment of uint32_t to unsigned char:
+                paddedmsg[60] = bitlen >> 24
+shaO.c: (in function sha_msg_pad0)
+shaO.c:76:5: Assignment of int to unsigned char: paddedmsg[i] = 0x00
+shaO.c:78:3: Assignment of uint32_t to unsigned char: paddedmsg[63] = bitlen
+shaO.c:79:3: Assignment of uint32_t to unsigned char:
+                paddedmsg[62] = bitlen >> 8
+shaO.c:80:3: Assignment of uint32_t to unsigned char:
+                paddedmsg[61] = bitlen >> 16
+shaO.c:81:3: Assignment of uint32_t to unsigned char:
+                paddedmsg[60] = bitlen >> 24
+shaO.c:85:62: Function parameter hash declared as manifest array (size constant
+                 is meaningless)
+  A formal parameter is declared as an array with size.  The size of the array
+  is ignored in this context, since the array formal parameter is treated as a
+  pointer. (Use -fixedformalarray to inhibit warning)
+shaO.c: (in function sha1_md)
+shaO.c:86:21: Variable bitlen initialized to type arbitrary integral type,
+                 expects uint32_t: 8 * size
+  To allow arbitrary integral types to match any integral type, use
+  +matchanyintegral.
+shaO.c:100:31: Function memcpy expects arg 3 to be size_t gets arbitrary
+                  integral type: R * sizeof(unsigned char)
+shaO.c:107:25: Function memcpy expects arg 3 to be size_t gets arbitrary
+                  integral type: R * sizeof(unsigned char)
+shaO.c:108:5: Assignment of int to unsigned char: msgTBH[R] = 0x80
+shaO.c:110:7: Assignment of int to unsigned char: msgTBH[i] = 0x00
+shaO.c:113:25: Passed storage paddedMessage not completely defined
+    (*paddedMessage is undefined): sha_msg_pad0 (..., paddedMessage)
+  Storage derivable from a parameter, return value or global is not defined.
+  Use /*@out@*/ to denote passed or returned storage which need not be defined.
+  (Use -compdef to inhibit warning)
+shaO.c:115:33: Passed storage paddedMessage not completely defined
+    (*paddedMessage is undefined): sha_msg_pad (..., paddedMessage)
+shaO.c: (in function sha1_process)
+shaO.c:127:5: Assignment of unsigned int to uint32_t:
+    W[i] = (((unsigned int)msg[i * 4]) << 24) + (((unsigned int)msg[i * 4 + 1])
+    << 16) + (((unsigned int)msg[i * 4 + 2]) << 8) + (((unsigned int)msg[i * 4
+    + 3]))
+shaO.c:185:64: Function parameter hash declared as manifest array (size
+                  constant is meaningless)
+shaO.c: (in function sha256_md)
+shaO.c:186:21: Variable bitlen initialized to type arbitrary integral type,
+                  expects uint32_t: 8 * size
+shaO.c:202:31: Function memcpy expects arg 3 to be size_t gets arbitrary
+                  integral type: R * sizeof(unsigned char)
+shaO.c:209:25: Function memcpy expects arg 3 to be size_t gets arbitrary
+                  integral type: R * sizeof(unsigned char)
+shaO.c:210:5: Assignment of int to unsigned char: msgTBH[R] = 0x80
+shaO.c:212:7: Assignment of int to unsigned char: msgTBH[i] = 0x00
+shaO.c:215:25: Passed storage paddedMessage not completely defined
+    (*paddedMessage is undefined): sha_msg_pad0 (..., paddedMessage)
+shaO.c:217:33: Passed storage paddedMessage not completely defined
+    (*paddedMessage is undefined): sha_msg_pad (..., paddedMessage)
+shaO.c:224:34: Parameter 1, hash, of function sha256_process has inconsistent
+    type: declared unsigned int [], previously declared uint32_t []
+   shaO.c:43:21: Previous declaration of hash: uint32_t []
+shaO.c: (in function sha256_process)
+shaO.c:241:5: Assignment of unsigned int to uint32_t:
+    W[i] = (((unsigned int)msg[i * 4]) << 24) | (((unsigned int)msg[i * 4 + 1])
+    << 16) | (((unsigned int)msg[i * 4 + 2]) << 8) | (((unsigned int)msg[i * 4
+    + 3]))
+shaO.c:249:3: Assignment of unsigned int to uint32_t: A = hash[0]
+shaO.c:250:3: Assignment of unsigned int to uint32_t: B = hash[1]
+shaO.c:251:3: Assignment of unsigned int to uint32_t: C = hash[2]
+shaO.c:252:3: Assignment of unsigned int to uint32_t: D = hash[3]
+shaO.c:253:3: Assignment of unsigned int to uint32_t: E = hash[4]
+shaO.c:254:3: Assignment of unsigned int to uint32_t: F = hash[5]
+shaO.c:255:3: Assignment of unsigned int to uint32_t: G = hash[6]
+shaO.c:256:3: Assignment of unsigned int to uint32_t: H = hash[7]
+shaO.c: (in function sha512_msg_pad)
+shaO.c:288:3: Assignment of int to unsigned char: paddedmsg[size] = 0x80
+shaO.c:290:5: Assignment of int to unsigned char: paddedmsg[i] = 0x00
+shaO.c:292:3: Assignment of uint32_t to unsigned char: paddedmsg[127] = bitlen
+shaO.c:293:3: Assignment of uint32_t to unsigned char:
+                 paddedmsg[126] = bitlen >> 8
+shaO.c:294:3: Assignment of uint32_t to unsigned char:
+                 paddedmsg[125] = bitlen >> 16
+shaO.c:295:3: Assignment of uint32_t to unsigned char:
+                 paddedmsg[124] = bitlen >> 24
+shaO.c: (in function sha512_msg_pad0)
+shaO.c:302:5: Assignment of int to unsigned char: paddedmsg[i] = 0x00
+shaO.c:304:3: Assignment of uint32_t to unsigned char: paddedmsg[127] = bitlen
+shaO.c:305:3: Assignment of uint32_t to unsigned char:
+                 paddedmsg[126] = bitlen >> 8
+shaO.c:306:3: Assignment of uint32_t to unsigned char:
+                 paddedmsg[125] = bitlen >> 16
+shaO.c:307:3: Assignment of uint32_t to unsigned char:
+                 paddedmsg[124] = bitlen >> 24
+shaO.c:312:64: Function parameter hash declared as manifest array (size
+                  constant is meaningless)
+shaO.c: (in function sha512_md)
+shaO.c:313:21: Variable bitlen initialized to type arbitrary integral type,
+                  expects uint32_t: 8 * size
+shaO.c:329:32: Function memcpy expects arg 3 to be size_t gets arbitrary
+                  integral type: R * sizeof(unsigned char)
+shaO.c:333:20: Function sha512_process expects arg 1 to be unsigned long int []
+                  gets uint64_t [8]: hash
+shaO.c:336:25: Function memcpy expects arg 3 to be size_t gets arbitrary
+                  integral type: R * sizeof(unsigned char)
+shaO.c:337:5: Assignment of int to unsigned char: msgTBH[R] = 0x80
+shaO.c:339:7: Assignment of int to unsigned char: msgTBH[i] = 0x00
+shaO.c:341:20: Function sha512_process expects arg 1 to be unsigned long int []
+                  gets uint64_t [8]: hash
+shaO.c:342:28: Passed storage paddedMessage not completely defined
+    (*paddedMessage is undefined): sha512_msg_pad0 (..., paddedMessage)
+shaO.c:344:36: Passed storage paddedMessage not completely defined
+    (*paddedMessage is undefined): sha512_msg_pad (..., paddedMessage)
+shaO.c:347:18: Function sha512_process expects arg 1 to be unsigned long int []
+                  gets uint64_t [8]: hash
+shaO.c:351:30: Parameter 1, hash, of function sha512_process has inconsistent
+    type: declared uint64_t [], previously declared unsigned long int []
+   shaO.c:44:38: Previous declaration of hash: unsigned long int []
+shaO.c: (in function sha512_process)
+shaO.c:377:5: Assignment of unsigned long int to uint64_t:
+    W[i] = (((unsigned long int)msg[i * 8]) << 56) | (((unsigned long int)msg[i
+    * 8 + 1]) << 48) | (((unsigned long int)msg[i * 8 + 2]) << 40) |
+    (((unsigned long int)msg[i * 8 + 3]) << 32) | (((unsigned long int)msg[i *
+    8 + 4]) << 24) | (((unsigned long int)msg[i * 8 + 5]) << 16) | (((unsigned
+    long int)msg[i * 8 + 6]) << 8) | (((unsigned long int)msg[i * 8 + 7]))
+  To allow arbitrary integral types to match long unsigned, use
+  +longunsignedintegral.
+shaO.c: (in function testSHA)
+shaO.c:436:19: Function sha1_md expects arg 2 to be int32_t gets int: size
+shaO.c:436:25: Function sha1_md expects arg 3 to be uint32_t [5] gets unsigned
+                  int [5]: hash1
+shaO.c:436:25: Passed storage hash1 not completely defined (*hash1 is
+                  undefined): sha1_md (..., hash1)
+shaO.c:443:42: Function sha1_md expects arg 2 to be int32_t gets int: size
+shaO.c:443:48: Function sha1_md expects arg 3 to be uint32_t [5] gets unsigned
+                  int [5]: hash1
+shaO.c:451:21: Function sha256_md expects arg 2 to be int32_t gets int: size
+shaO.c:451:26: Function sha256_md expects arg 3 to be uint32_t [8] gets
+                  unsigned int [8]: hash2
+shaO.c:451:26: Passed storage hash2 not completely defined (*hash2 is
+                  undefined): sha256_md (..., hash2)
+shaO.c:459:44: Function sha256_md expects arg 2 to be int32_t gets int: size
+shaO.c:459:49: Function sha256_md expects arg 3 to be uint32_t [8] gets
+                  unsigned int [8]: hash2
+shaO.c:467:21: Function sha512_md expects arg 2 to be int32_t gets int: size
+shaO.c:467:26: Function sha512_md expects arg 3 to be uint64_t [8] gets
+                  unsigned long int [8]: hash3
+shaO.c:467:26: Passed storage hash3 not completely defined (*hash3 is
+                  undefined): sha512_md (..., hash3)
+shaO.c:468:10: Operands of != have incompatible types (unsigned long int, int):
+                  hash3[0] != 0xe718483d0ce76964
+  To ignore signs in type comparisons use +ignoresigns
+shaO.c:468:76: Operands of != have incompatible types (unsigned long int, int):
+                  hash3[2] != 0x8e1f98b13b204428
+shaO.c:469:42: Operands of != have incompatible types (unsigned long int, int):
+                  hash3[4] != 0xde0ff244877ea60a
+shaO.c:470:5: Operands of != have incompatible types (unsigned long int, int):
+                 hash3[6] != 0xeb009c5c2c49aa2e
+shaO.c:475:44: Function sha512_md expects arg 2 to be int32_t gets int: size
+shaO.c:475:49: Function sha512_md expects arg 3 to be uint64_t [8] gets
+                  unsigned long int [8]: hash3
+shaO.c:42:6: Function exported but not used outside shaO: sha1_process
+  A declaration is exported, but not used outside this module. Declaration can
+  use static qualifier. (Use -exportlocal to inhibit warning)
+   shaO.c:183:1: Definition of sha1_process
+shaO.c:43:6: Function exported but not used outside shaO: sha256_process
+   shaO.c:280:1: Definition of sha256_process
+shaO.c:44:6: Function exported but not used outside shaO: sha512_process
+   shaO.c:420:1: Definition of sha512_process
+shaO.c:45:5: Function exported but not used outside shaO: testSHA
+   shaO.c:482:1: Definition of testSHA
+shaO.c:56:6: Function exported but not used outside shaO: sha_msg_pad
+   shaO.c:71:1: Definition of sha_msg_pad
+shaO.c:73:6: Function exported but not used outside shaO: sha_msg_pad0
+   shaO.c:83:1: Definition of sha_msg_pad0
+shaO.c:85:6: Function exported but not used outside shaO: sha1_md
+   shaO.c:119:1: Definition of sha1_md
+shaO.c:185:6: Function exported but not used outside shaO: sha256_md
+   shaO.c:222:1: Definition of sha256_md
+shaO.c:283:6: Function exported but not used outside shaO: sha512_msg_pad
+   shaO.c:297:1: Definition of sha512_msg_pad
+shaO.c:299:6: Function exported but not used outside shaO: sha512_msg_pad0
+   shaO.c:309:1: Definition of sha512_msg_pad0
+shaO.c:312:6: Function exported but not used outside shaO: sha512_md
+   shaO.c:349:1: Definition of sha512_md
+

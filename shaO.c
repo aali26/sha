@@ -54,10 +54,16 @@ int main (int argc, char *argv[]) {
 
 void sha_msg_pad(unsigned char message[], int size, unsigned int bitlen,
 		 unsigned char paddedmsg[]) {
-  int i;
-  for (i=0; i<size; i++) {
+  register int i;
+  //Converted for-loop to while loop-change#1
+  /*for (i=0; i<size; i++) {
     paddedmsg[i]=message[i];
+  } */
+  while (i<size){
+  paddedmsg[i]=message[i];
+  i++;
   }
+  
   paddedmsg[size]= 0x80;
   for (i=size+1; i<64; i++) {
     paddedmsg[i]=0x00;
@@ -71,8 +77,13 @@ void sha_msg_pad(unsigned char message[], int size, unsigned int bitlen,
 
 void sha_msg_pad0(unsigned int bitlen, unsigned char paddedmsg[]) {
   register int i;
-  for (i=0; i<64; i++) {
+ //Converted for-loop to while loop-change#2
+  /*for (i=0; i<64; i++) {
     paddedmsg[i]=0x00;
+  }*/
+  while (i<64){
+    paddedmsg[i]=0x00;
+    i++;
   }
   paddedmsg[63] = bitlen;
   paddedmsg[62] = bitlen >> 8;
@@ -97,11 +108,11 @@ void sha1_md(unsigned char message[], int size, unsigned int hash[5]) {
   int R= size%64;
   unsigned char msg[R];
   memcpy(msg, &message[64*Q], R * sizeof(unsigned char));
-  
   for (i=0; i<Q; i++) {
     memcpy(msgTBH, &message[64*i], 64 * sizeof(unsigned char));
     sha1_process(hash, msgTBH);
   }
+
   if (R>55) {
     memcpy(msgTBH, msg, R * sizeof(unsigned char));
     msgTBH[R]=0x80;
@@ -147,6 +158,7 @@ void sha1_process(unsigned int hash[], unsigned char msg[]) {
     B = A;
     A = T;
   }
+
   for(i = 20; i < 40; i++) {
     T = ROTL(A,5) + (B^C^D) + E + W[i] + K[1];
     E = D;
@@ -204,6 +216,7 @@ void sha256_md(unsigned char message[], int size, unsigned int hash[8]) {
     memcpy(msgTBH, &message[64*i], 64 * sizeof(unsigned char));
     sha256_process(hash, msgTBH);
   }
+
   if (R>55) {
     memcpy(msgTBH, msg, R * sizeof(unsigned char));
     msgTBH[R]=0x80;
@@ -334,8 +347,13 @@ void sha512_md(unsigned char message[], int size, unsigned long hash[8]) {
   if (R>111) {
     memcpy(msgTBH, msg, R * sizeof(unsigned char));
     msgTBH[R]=0x80;
-    for (i=R+1; i<128; i++) {
+     //Converted for-loop to while loop-change#3
+    /*for (i=R+1; i<128; i++) {
       msgTBH[i]=0x00;
+    }*/
+    while (i<128){
+     msgTBH[i]=0x00;
+     i++;
     }
     sha512_process(hash, msgTBH);
     sha512_msg_pad0(bitlen,paddedMessage);
@@ -382,6 +400,7 @@ void sha512_process(unsigned long hash[], unsigned char msg[]) {
       (((unsigned long) msg[i * 8 + 6]) << 8)  |
       (((unsigned long) msg[i * 8 + 7]));
   }
+   
   for(i = 16; i < 80; i++) {
     W[i] = sigma5121(W[i-2])+W[i-7]+sigma5120(W[i-15])+ W[i-16];
   }
@@ -428,7 +447,12 @@ int testSHA(int shatype, int numT){
   clock_t start, finish;
   double seconds;
   static unsigned char msg4[1000000];
-  for (i=0; i<1000000; i++)  msg4[i]='a';
+ //Converted for-loop to while loop-change#4
+  //for (i=0; i<1000000; i++)  msg4[i]='a';
+  while (i<1000000){
+   msg4[i]='a';
+   i++;
+  }
   size=1000000;
   
   if (shatype==1) {

@@ -44,7 +44,7 @@ void sha512_process(unsigned long [], unsigned char []);
 int testSHA(int shatype, int numT);
 
 int main (int argc, char *argv[]) {
-  int numofT=100;
+  u_int32_t numofT=100;  //converted to fixed length int-change#1
   testSHA(1,numofT);
   testSHA(2,numofT);
   testSHA(3,numofT);
@@ -104,8 +104,8 @@ void sha1_md(unsigned char message[], int size, unsigned int hash[5]) {
   unsigned char msgTBH[64]; /* 64 BYTE msg to be hashed */
   unsigned char paddedMessage[64]; /* last msg block to be hashed*/
 
-  int Q= size/64;
-  int R= size%64;
+  u_int32_t Q= size/64;  //converted to fixed length int-change#2
+  u_int32_t R= size%64;  //converted to fixed length int-change#3
   unsigned char msg[R];
   memcpy(msg, &message[64*Q], R * sizeof(unsigned char));
   for (i=0; i<Q; i++) {
@@ -207,8 +207,8 @@ void sha256_md(unsigned char message[], int size, unsigned int hash[8]) {
   unsigned char msgTBH[64]; /* 64 BYTE msg to be hashed */
   unsigned char paddedMessage[64]; /* last msg block to be hashed*/
   register int i;
-  int Q= size/64;
-  int R= size%64;
+  u_int32_t Q= size/64; //converted to fixed length int-change#4
+  u_int32_t R= size%64; //converted to fixed length int-change#5
   unsigned char msg[R];
   memcpy(msg, &message[64*Q], R * sizeof(unsigned char));
   
@@ -335,8 +335,8 @@ void sha512_md(unsigned char message[], int size, unsigned long hash[8]) {
   unsigned char msgTBH[128]; /* 128 BYTE msg to be hashed */
   unsigned char paddedMessage[128]; /* last msg block to be hashed*/
   
-  int Q= size/128;
-  int R= size%128;
+  u_int32_t Q= size/128;  //converted to fixed length int-change#6
+  u_int32_t R= size%128;  //converted to fixed length int-change#7
   unsigned char msg[R];
   memcpy(msg, &message[128*Q], R * sizeof(unsigned char));
   register int i;

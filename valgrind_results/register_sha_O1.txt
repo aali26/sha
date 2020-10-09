@@ -1,0 +1,140 @@
+==15979== Memcheck, a memory error detector
+==15979== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==15979== Using Valgrind-3.15.0-608cb11914-20190413 and LibVEX; rerun with -h for copyright info
+==15979== Command: ./register_sha_O1
+==15979== Parent PID: 8585
+==15979== 
+--15979-- 
+--15979-- Valgrind options:
+--15979--    --leak-check=full
+--15979--    --show-leak-kinds=all
+--15979--    --track-origins=yes
+--15979--    --verbose
+--15979--    --log-file=valgrind_results/register_sha_O1.txt
+--15979-- Contents of /proc/version:
+--15979--   Linux version 5.4.0-48-generic (buildd@lcy01-amd64-010) (gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2)) #52-Ubuntu SMP Thu Sep 10 10:58:49 UTC 2020
+--15979-- 
+--15979-- Arch and hwcaps: AMD64, LittleEndian, amd64-cx16-lzcnt-rdtscp-sse3-ssse3-avx-avx2-rdrand
+--15979-- Page sizes: currently 4096, max supported 4096
+--15979-- Valgrind library directory: /usr/lib/x86_64-linux-gnu/valgrind
+--15979-- Reading syms from /home/ayman/Desktop/final_sha/register_sha_O1
+--15979-- Reading syms from /usr/lib/x86_64-linux-gnu/ld-2.31.so
+--15979--   Considering /usr/lib/x86_64-linux-gnu/ld-2.31.so ..
+--15979--   .. CRC mismatch (computed 6cded93a wanted 1af57820)
+--15979--   Considering /lib/x86_64-linux-gnu/ld-2.31.so ..
+--15979--   .. CRC mismatch (computed 6cded93a wanted 1af57820)
+--15979--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/ld-2.31.so ..
+--15979--   .. CRC is valid
+--15979-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/memcheck-amd64-linux
+--15979--    object doesn't have a symbol table
+--15979--    object doesn't have a dynamic symbol table
+--15979-- Scheduler: using generic scheduler lock implementation.
+--15979-- Reading suppressions file: /usr/lib/x86_64-linux-gnu/valgrind/default.supp
+==15979== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-15979-by-ayman-on-???
+==15979== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-15979-by-ayman-on-???
+==15979== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-15979-by-ayman-on-???
+==15979== 
+==15979== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==15979== don't want to do, unless you know exactly what you're doing,
+==15979== or are doing some strange experiment):
+==15979==   /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=15979 ...command...
+==15979== 
+==15979== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==15979==   /path/to/gdb ./register_sha_O1
+==15979== and then give GDB the following command
+==15979==   target remote | /usr/lib/x86_64-linux-gnu/valgrind/../../bin/vgdb --pid=15979
+==15979== --pid is optional if only one valgrind process is running
+==15979== 
+--15979-- REDIR: 0x4022d80 (ld-linux-x86-64.so.2:strlen) redirected to 0x580c9ce2 (???)
+--15979-- REDIR: 0x4022b50 (ld-linux-x86-64.so.2:index) redirected to 0x580c9cfc (???)
+--15979-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_core-amd64-linux.so
+--15979--    object doesn't have a symbol table
+--15979-- Reading syms from /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so
+--15979--    object doesn't have a symbol table
+==15979== WARNING: new redirection conflicts with existing -- ignoring it
+--15979--     old: 0x04022d80 (strlen              ) R-> (0000.0) 0x580c9ce2 ???
+--15979--     new: 0x04022d80 (strlen              ) R-> (2007.0) 0x0483f060 strlen
+--15979-- REDIR: 0x401f560 (ld-linux-x86-64.so.2:strcmp) redirected to 0x483ffd0 (strcmp)
+--15979-- REDIR: 0x40232e0 (ld-linux-x86-64.so.2:mempcpy) redirected to 0x4843a20 (mempcpy)
+--15979-- Reading syms from /usr/lib/x86_64-linux-gnu/libc-2.31.so
+--15979--   Considering /usr/lib/x86_64-linux-gnu/libc-2.31.so ..
+--15979--   .. CRC mismatch (computed cd1655d1 wanted 09373696)
+--15979--   Considering /lib/x86_64-linux-gnu/libc-2.31.so ..
+--15979--   .. CRC mismatch (computed cd1655d1 wanted 09373696)
+--15979--   Considering /usr/lib/debug/lib/x86_64-linux-gnu/libc-2.31.so ..
+--15979--   .. CRC is valid
+--15979-- REDIR: 0x48fe600 (libc.so.6:memmove) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd900 (libc.so.6:strncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe930 (libc.so.6:strcasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd220 (libc.so.6:strcat) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd960 (libc.so.6:rindex) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48ffdd0 (libc.so.6:rawmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x491ae60 (libc.so.6:wmemchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x491a9a0 (libc.so.6:wcscmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe760 (libc.so.6:mempcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe590 (libc.so.6:bcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd890 (libc.so.6:strncmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd2d0 (libc.so.6:strcmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe6c0 (libc.so.6:memset) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x491a960 (libc.so.6:wcschr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd7f0 (libc.so.6:strnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd3b0 (libc.so.6:strcspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe980 (libc.so.6:strncasecmp) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd350 (libc.so.6:strcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fead0 (libc.so.6:memcpy@@GLIBC_2.14) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x491c0d0 (libc.so.6:wcsnlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x491a9e0 (libc.so.6:wcscpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd9a0 (libc.so.6:strpbrk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd280 (libc.so.6:index) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fd7b0 (libc.so.6:strlen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x4906d20 (libc.so.6:memrchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe9d0 (libc.so.6:strcasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe550 (libc.so.6:memchr) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x491aab0 (libc.so.6:wcslen) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fdc60 (libc.so.6:strspn) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe8d0 (libc.so.6:stpncpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fe870 (libc.so.6:stpcpy) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48ffe10 (libc.so.6:strchrnul) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x48fea20 (libc.so.6:strncasecmp_l) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x498b8e0 (libc.so.6:__memcpy_chk) redirected to 0x48311d0 (_vgnU_ifunc_wrapper)
+--15979-- REDIR: 0x49e6490 (libc.so.6:__strrchr_avx2) redirected to 0x483ea10 (rindex)
+--15979-- REDIR: 0x48f9c90 (libc.so.6:calloc) redirected to 0x483dce0 (calloc)
+--15979-- REDIR: 0x49e62a0 (libc.so.6:__strchrnul_avx2) redirected to 0x4843540 (strchrnul)
+--15979-- REDIR: 0x49e9670 (libc.so.6:__memcpy_avx_unaligned_erms) redirected to 0x48429f0 (memmove)
+--15979-- REDIR: 0x49e6660 (libc.so.6:__strlen_avx2) redirected to 0x483ef40 (strlen)
+--15979-- REDIR: 0x49e9650 (libc.so.6:__mempcpy_avx_unaligned_erms) redirected to 0x4843660 (mempcpy)
+--15979-- REDIR: 0x48f8260 (libc.so.6:malloc) redirected to 0x483b780 (malloc)
+==15979== 
+==15979== Process terminating with default action of signal 27 (SIGPROF)
+==15979==    at 0x497165A: __open_nocancel (open64_nocancel.c:45)
+==15979==    by 0x497F36F: write_gmon (gmon.c:370)
+==15979==    by 0x497FBCE: _mcleanup (gmon.c:444)
+==15979==    by 0x48A4A26: __run_exit_handlers (exit.c:108)
+==15979==    by 0x48A4BDF: exit (exit.c:139)
+==15979==    by 0x10A965: main (in /home/ayman/Desktop/final_sha/register_sha_O1)
+--15979-- REDIR: 0x48f8850 (libc.so.6:free) redirected to 0x483c9d0 (free)
+==15979== 
+==15979== HEAP SUMMARY:
+==15979==     in use at exit: 10,922 bytes in 1 blocks
+==15979==   total heap usage: 2 allocs, 1 frees, 11,946 bytes allocated
+==15979== 
+==15979== Searching for pointers to 1 not-freed blocks
+==15979== Checked 1,084,368 bytes
+==15979== 
+==15979== 10,922 bytes in 1 blocks are still reachable in loss record 1 of 1
+==15979==    at 0x483DD99: calloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15979==    by 0x497FA01: monstartup (gmon.c:153)
+==15979==    by 0x1091A0: __gmon_start__ (in /home/ayman/Desktop/final_sha/register_sha_O1)
+==15979==    by 0x109015: ??? (in /home/ayman/Desktop/final_sha/register_sha_O1)
+==15979==    by 0x1FFEFFFF05: ???
+==15979==    by 0x10A9A0: __libc_csu_init (in /home/ayman/Desktop/final_sha/register_sha_O1)
+==15979==    by 0x488203F: (below main) (libc-start.c:264)
+==15979== 
+==15979== LEAK SUMMARY:
+==15979==    definitely lost: 0 bytes in 0 blocks
+==15979==    indirectly lost: 0 bytes in 0 blocks
+==15979==      possibly lost: 0 bytes in 0 blocks
+==15979==    still reachable: 10,922 bytes in 1 blocks
+==15979==         suppressed: 0 bytes in 0 blocks
+==15979== 
+==15979== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

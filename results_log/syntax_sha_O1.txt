@@ -1,0 +1,3 @@
+0.322622 seconds for 100 times of SHA-1
+0.444025 seconds for 100 times of SHA-256
+0.293197 seconds for 100 times of SHA-512
